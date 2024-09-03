@@ -1,0 +1,5 @@
+notebooks/.ipynb_checkpoints/
+notebooks/*.ipynb
+LLaMA_cosmoChat/.ipynb_checkpoints/
+data/.ipynb_checkpoints/
+LLaMA_cosmoChat/__pycache__/
