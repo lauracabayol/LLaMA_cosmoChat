@@ -3,7 +3,6 @@ import os
 import sys
 import subprocess
 import json
-from pyhive import hive
 import pandas as pd
 import re
 import io
@@ -12,9 +11,15 @@ import seaborn as sns
 
 # Import PyTorch and Hugging Face modules for model handling and text processing
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments, Trainer, DataCollatorForSeq2Seq, pipeline, BitsAndBytesConfig
+from transformers import (AutoTokenizer, 
+                          AutoModelForCausalLM, 
+                          TrainingArguments, 
+                          Trainer, 
+                          DataCollatorForSeq2Seq, 
+                          pipeline, 
+                          BitsAndBytesConfig)
 
-import wandb
+#import wandb
 import platform
 from huggingface_hub import login
 
