@@ -17,14 +17,15 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 import torch
-import huggingface_hub 
-import transformers 
+import huggingface_hub
+import transformers
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # Import and reload user-defined modules
 from . import exceptions
+
 importlib.reload(exceptions)
 from .exceptions import QueryValidationError, SQLExtractionError
 
@@ -45,8 +46,6 @@ class ChatCosmoHub:
     base_model: str = "meta-llama/Meta-Llama-3-8B-Instruct"
     load_in_4bit: bool = True
     load_in_8bit: bool = False
-
-
 
     def __post_init__(self) -> None:
         # Determine the root directory of the repository using Git
