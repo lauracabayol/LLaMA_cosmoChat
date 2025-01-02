@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 # Import and reload user-defined modules
-from . import exceptions
+import exceptions
 
 importlib.reload(exceptions)
-from .exceptions import QueryValidationError, SQLExtractionError
+from exceptions import QueryValidationError, SQLExtractionError
 
 
 @dataclass
@@ -283,6 +283,7 @@ class ChatCosmoHub:
         )
         content = outputs[0]["generated_text"][len(prompt) :]
         print(content)
-        sql_part = self._extract_sql(content)
+        sql_part = self._clean_SQLstring(sql_query)
+        #sql_part = self._extract_sql(content)
 
         return sql_part
