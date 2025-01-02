@@ -173,8 +173,8 @@ class ChatCosmoHub:
 
         # Define the base system instruction
         system_message = f"""
-        You are a powerful text-to-SQL and text-to-Python-code model. 
-        Your job is to answer questions about a database by providing both the SQL query needed to retrieve the data and the Python script to perform the requested tasks.
+        You are a powerful text-to-SQL model. 
+        Your job is to answer questions about a database by providing both the SQL query needed to retrieve the data and to perform the requested tasks.
         You are given a question and context regarding one or more tables. 
         You must output the SQL query with cosmohub. in front of the queried table in the SQL query.
         Return only the SQL query without further explanations, starting with 'SQL query:', do not start with sql, provide ONLY the query.
@@ -212,13 +212,13 @@ class ChatCosmoHub:
 
     def _extract_sql(self, content: str) -> str:
         """
-        Extract SQL query and Python script from the generated content.
+        Extract SQL query  from the generated content.
 
         Parameters:
-        - content (str): The content containing both SQL and Python script.
+        - content (str): The content containing both SQL 
 
         Returns:
-        - Tuple containing the cleaned SQL query and Python script.
+        - Tuple containing the cleaned SQL query
 
         Raises:
         - SQLExtractionError: If SQL query keyword is not found in content
@@ -244,13 +244,13 @@ class ChatCosmoHub:
 
     def query_LLaMA(self, query: str) -> Tuple[str, str]:
         """
-        Query the LLaMA model with a user query to generate SQL and Python code.
+        Query the LLaMA model with a user query to generate SQL.
 
         Parameters:
         - query (str): The user query to be processed.
 
         Returns:
-        - Tuple containing the SQL query and Python plot script.
+        - Tuple containing the SQL query.
 
         Raises:
         - QueryValidationError: If the query doesn't reference any available tables
@@ -275,7 +275,7 @@ class ChatCosmoHub:
         # Generate the output from the model
         outputs = self.pipeline_model(
             prompt,
-            max_new_tokens=512,  # Increased token limit to accommodate both SQL and Python code
+            max_new_tokens=512,  # Increased token limit to accommodate both SQL 
             eos_token_id=terminators,
             do_sample=True,
             temperature=0.5,
