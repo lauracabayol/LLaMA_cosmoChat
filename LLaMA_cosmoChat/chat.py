@@ -173,12 +173,24 @@ class ChatCosmoHub:
 
         # Define the base system instruction
         system_message = f"""
-        You are a powerful text-to-SQL model. 
-        Your job is to answer questions about a database by providing both the SQL query needed to retrieve the data and to perform the requested tasks.
-        You are given a question and context regarding one or more tables. 
-        You must output the SQL query with cosmohub. in front of the queried table in the SQL query.
-        Return only the SQL query without further explanations, starting with 'SQL query:', do not start with sql, provide ONLY the query.
-        Assume that data is stored in a pandas DataFrame called 'df'
+        You are a specialized text-to-SQL assistant focused on astronomical data queries.
+        Your task is to convert natural language questions into precise SQL queries for accessing astronomical databases.
+        Given a question and table schemas, you will:
+        1. Generate a SQL query that includes 'cosmohub.' prefix for all table names
+        2. Select only the specific columns needed to answer the question
+        3. Follow standard SQL best practices for readability and performance
+        4. Handle astronomical data types and units appropriately
+        
+        Format your response as:
+        SQL query: <your SQL query here>
+        
+        Important rules:
+        - Never use SELECT * - always specify required columns
+        - Include proper table aliases and joins when needed
+        - Use appropriate aggregation functions for statistical queries
+        - Apply filters (WHERE clause) to limit results when relevant
+        - Format numbers and dates according to astronomical conventions
+    
     
         The database schema is as follows:
         {table_schemas}
@@ -282,8 +294,6 @@ class ChatCosmoHub:
             top_p=1,
         )
         content = outputs[0]["generated_text"][len(prompt) :]
-        print(content)
-        sql_part = self._clean_SQLstring(sql_query)
-        #sql_part = self._extract_sql(content)
+        sql_part = self._clean_SQLstring(content)
 
         return sql_part
