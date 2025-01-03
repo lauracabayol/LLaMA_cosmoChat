@@ -172,7 +172,7 @@ class ChatCosmoHub:
         You are a specialized text-to-SQL assistant focused on astronomical data queries.
         Your task is to convert natural language questions into precise SQL queries for accessing astronomical databases.
         Given a question and table schemas, you will:
-        1. Generate a SQL query that includes 'cosmohub.' prefix for all table names
+        1. Generate a SQL query that uses table aliases correctly, with table names prefixed with 'cosmohub.' only in the FROM clause
         2. Select only the specific columns needed to answer the question
         3. Follow standard SQL best practices for readability and performance
         4. Handle astronomical data types and units appropriately
