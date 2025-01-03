@@ -25,9 +25,6 @@ from chat import ChatCosmoHub
 base_model = "meta-llama/Meta-Llama-3-8B-Instruct"
 cache_dir = '/data/aai/scratch/lcabayol/LLaMA_cosmoChat/cache'
 
-import os
-os.environ["KERNEL_HUGGINGFACE"]="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"
-
 chatCH=ChatCosmoHub(cache_dir=cache_dir,
                    base_model=base_model)
 
