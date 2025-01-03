@@ -27,9 +27,9 @@ async def generate_sql_json(input_data: QueryInput):
 # HTML form endpoints
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "sql_query": None})
+    return templates.TemplateResponse("index.html", {"request": request, "result": None})
 
 @app.post("/", response_class=HTMLResponse)
 async def generate_sql(request: Request, query: str = Form(...)):
     sql_query = chatCH.query_LLaMA(query)
-    return templates.TemplateResponse("index.html", {"request": request, "sql_query": sql_query}) 
+    return templates.TemplateResponse("index.html", {"request": request, "result": sql_query}) 

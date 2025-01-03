@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Number Calculator</title>
+    <title>SQL Query Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,13 +61,13 @@
     </style>
 </head>
 <body>
-    <h1>Number Calculator</h1>
+    <h1>SQL Query Generator</h1>
     <form method="post">
         <div class="form-group">
             <label for="query">Enter a text:</label>
             <input type="text" id="query" name="query" required>
         </div>
-        <button type="submit">Calculate</button>
+        <button type="submit">Convert</button>
     </form>
 
     {% if result is not none %}
