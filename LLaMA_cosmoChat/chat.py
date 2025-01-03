@@ -176,6 +176,7 @@ class ChatCosmoHub:
         2. Select only the specific columns needed to answer the question
         3. Follow standard SQL best practices for readability and performance
         4. Handle astronomical data types and units appropriately
+        4. Return ONLY the SQL query, no further explanations.
         
         Format your response as:
         SQL query: <your SQL query here>
