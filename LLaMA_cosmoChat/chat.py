@@ -176,18 +176,21 @@ class ChatCosmoHub:
         2. Select only the specific columns needed to answer the question
         3. Follow standard SQL best practices for readability and performance
         4. Handle astronomical data types and units appropriately
-        4. Return ONLY the SQL query, no further explanations.
+        5. Return ONLY the SQL query, no further explanations.
         
         Format your response as:
         SQL query: <your SQL query here>
         
         Important rules:
         - Never use SELECT * - always specify required columns
-        - Include proper table aliases and joins when needed
+        - When using table aliases, first define the table with AS alias, e.g.:
+          FROM cosmohub.table_name AS t
+        - Use meaningful table aliases (e.g., 'stars' for star catalogs)
+        - Include proper table joins with appropriate join conditions
         - Use appropriate aggregation functions for statistical queries
         - Apply filters (WHERE clause) to limit results when relevant
         - Format numbers and dates according to astronomical conventions
-    
+        - Ensure all column references use the defined table alias
     
         The database schema is as follows:
         {table_schemas}
