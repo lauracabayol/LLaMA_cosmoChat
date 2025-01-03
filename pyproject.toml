@@ -1,12 +1,23 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [project]
-name = "chatCosmoHub" 
-version = "0.1.0"
-description = "LLM for astronomical data queries."  
-requires-python = ">=3.9"
+name="chatCosmoHub"
+version="2025.0.0"
+authors = [
+    { name="Laura Cabayol-Garcia", email="lauracabayol@gmail.com" },
+]
+maintainers = [
+    { name="Laura Cabayol-Garcia", email="lauracabayol@gmail.com" },
+]
+description = "LLM for astronomical data queries."
+readme = "README.md"
+
+keywords = [
+    "LLM", "Cosmology", "LLaMA", "SQL", "NLP",
+]
+requires-python = ">= 3.9"
 dependencies = [
     "fastapi",
     "jinja2",
@@ -18,5 +29,32 @@ dependencies = [
     "transformers",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["https://github.com/lauracabayol/LLaMA_cosmoChat"] 
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific :: Cosmology/Astrophysics",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[project.optional-dependencies]
+jupyter = [
+    "jupyter",
+    "jupytext",
+]
+test = [
+  "pytest",
+]
+
+[tool.setuptools.packages.find]
+include = ["LLaMA_cosmoChat","LLaMA_cosmoChat.*"]
+namespaces = false
+
+
+[project.urls]
+Homepage="https://github.com/lauracabayol/LLaMA_cosmoChat"
+Repository="https://github.com/lauracabayol/LLaMA_cosmoChat.git"
+Issues="https://github.com/lauracabayol/LLaMA_cosmoChat/issues"
