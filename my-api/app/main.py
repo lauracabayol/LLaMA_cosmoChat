@@ -1,46 +1,35 @@
-from fastapi import FastAPI, HTTPException, Form
+# /bin/python main.py
+from fastapi import FastAPI, Request, Form
+from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import sys
-sys.path.append('../LLaMA_cosmoChat/')
-from chat import ChatCosmoHub
-import pandas as pd
+from LLaMA_cosmoChat.chat import ChatCosmoHub
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
-# Configuration
-BASE_MODEL = "meta-llama/Meta-Llama-3-8B-Instruct"
-CACHE_DIR = '/data/aai/scratch/lcabayol/chatCosmoHub/cache'
+cache_dir = '/data/aai/scratch/lcabayol/chatCosmoHub/cache'
+base_model = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 # Initialize ChatCosmoHub
-chat_ch = ChatCosmoHub(cache_dir=CACHE_DIR, base_model=BASE_MODEL)
-
-class Query(BaseModel):
+chatCH=ChatCosmoHub(cache_dir=cache_dir,
+                   base_model=base_model)
+# Model for JSON endpoint
+class QueryInput(BaseModel):
     query: str
 
+# JSON endpoint
+@app.post("/api/generate-sql")
+async def generate_sql_json(input_data: QueryInput):
+    sql_query = chatCH.query_LLaMA(input_data.query)
+    return {"sql_query": sql_query}
+
+# HTML form endpoints
 @app.get("/", response_class=HTMLResponse)
-async def get_query_form():
-    return '''
-        <form method="post" action="/generate">
-            <textarea name="query" rows="4" cols="50" placeholder="Enter your query here..."></textarea>
-            <br>
-            <input type="submit" value="Generate">
-        </form>
-    '''
+async def home(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request, "sql_query": None})
 
-@app.post("/generate")
-async def generate_query_and_plot(query: str = Form(...)):
-    try:
-        # Generate SQL and plotting code
-        sql_query, python_plot = chat_ch.query_LLaMA(query)
-        
-        return {
-            "sql_query": sql_query,
-            "python_plot": python_plot,
-        }
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
+@app.post("/", response_class=HTMLResponse)
+async def generate_sql(request: Request, query: str = Form(...)):
+    sql_query = chatCH.query_LLaMA(query)
+    return templates.TemplateResponse("index.html", {"request": request, "sql_query": sql_query}) 
