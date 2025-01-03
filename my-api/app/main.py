@@ -8,7 +8,7 @@ from LLaMA_cosmoChat.chat import ChatCosmoHub
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
-cache_dir = '/data/aai/scratch/lcabayol/chatCosmoHub/cache'
+cache_dir = "/data/aai/scratch/lcabayol/LLaMA_cosmoChat/cache"
 base_model = "meta-llama/Meta-Llama-3-8B-Instruct"
 
 # Initialize ChatCosmoHub

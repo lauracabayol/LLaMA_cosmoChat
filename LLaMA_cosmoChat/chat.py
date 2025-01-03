@@ -15,7 +15,6 @@ from typing import Any, Dict, List, Optional, Tuple
 # Third-party imports
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 import torch
 import huggingface_hub
 import transformers
@@ -23,12 +22,7 @@ import transformers
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-# Import and reload user-defined modules
-import exceptions
-
-importlib.reload(exceptions)
-from exceptions import QueryValidationError, SQLExtractionError
-
+from LLaMA_cosmoChat.exceptions import QueryValidationError, SQLExtractionError
 
 @dataclass
 class ChatCosmoHub:
@@ -70,6 +64,8 @@ class ChatCosmoHub:
             cache_dir=self.cache_dir,
             torch_dtype=torch.float16,
             device_map="auto",
+            #load_in_8bit_fp32_cpu_offload=True,
+            #offload_folder="offload_folder",
         )
 
         tokenizer = transformers.AutoTokenizer.from_pretrained(
