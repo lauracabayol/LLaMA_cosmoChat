@@ -70,6 +70,12 @@ Thumbs.db
 # Cache directories
 .cache/
 
+
+
+# Python package build directories
+*.egg-info/
+LLaMA_cosmoChat.egg-info/
+chatCosmoHub.egg-info/
 notebooks/.ipynb_checkpoints/
 notebooks/*.ipynb
 LLaMA_cosmoChat/.ipynb_checkpoints/
