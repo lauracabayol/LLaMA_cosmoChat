@@ -1,13 +1,25 @@
+---
+title: LLaMA cosmoChat
+emoji: 🌌
+colorFrom: blue
+colorTo: red
+python_version: 3.11
+pinned: false
+---
+
+[![Python application](https://img.shields.io/badge/python_application-passing-success)](https://github.com/lauracabayol/TEMPS/actions)
+[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Hugging Face Spaces](https://img.shields.io/badge/🤗_Spaces-deployed-blue)](https://huggingface.co/spaces/lauracabayol/TEMPS)
+[![LLaMA_cosmoChat](https://img.shields.io/badge/LLaMA_cosmoChat-passing-success)](https://github.com/lauracabayol/TEMPS/actions)
+
 # LLaMA_cosmoChat
 
 LLaMA_cosmoChat is a python module to generate SQL queries to CosmoHub with LLaMA generative AI open source models. 
 
 ## Installation
-(Last update Sept 3 2024)
+(Last update Jan 4 2025)
 
-- Create a new conda environment. It is usually better to follow python version one or two behind, we recommend 3.11.
-
-```
+- Create a new conda environment. It is usually better to follow python version one or two behind, we recommend 3.11.```
 conda create -n chatcosmohub -c conda-forge python=3.11 pip=24.0
 conda activate chatcosmohub
 ```
@@ -29,11 +41,33 @@ pip install ipykernel
 python -m ipykernel install --user --name chatcosmohub --display-name chatcosmohub
 ```
 
-#### Tutorials:
+## Tutorials:
 
-In the `notebooks` folder, there is a  tutorial.
+In the `notebooks` folder, there is a  tutorial showing how to use the chat.py module.
 These are .py scripts, in order to pair them to .ipynb, please run:
 
 ```
 jupytext your_script --to ipynb
 ```
+
+## API:
+
+In the `my-api` folder, there is a simple API to generate SQL queries using the chat.py module.
+
+To run the API, go to the `my-api/app` folder and please run:
+
+```
+uvicorn main:app --reload
+```
+
+To access the API, please go to `http://127.0.0.1:8000/`.
+
+Once the API is running, you can also make requests from the command line:
+
+```
+curl -X POST "http://localhost:8000/api/generate-sql" \
+-H "Content-Type: application/json" \
+-d '{"query": "Show me all galaxies from quaia_v1"}'
+```
+
+
