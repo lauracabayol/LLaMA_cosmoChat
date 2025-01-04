@@ -1,12 +1,3 @@
----
-title: LLaMA cosmoChat
-emoji: 🌌
-colorFrom: blue
-colorTo: red
-python_version: 3.11
-pinned: false
----
-
 [![Python application](https://img.shields.io/badge/python_application-passing-success)](https://github.com/lauracabayol/TEMPS/actions)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Hugging Face Spaces](https://img.shields.io/badge/🤗_Spaces-deployed-blue)](https://huggingface.co/spaces/lauracabayol/TEMPS)
