@@ -53,12 +53,4 @@ uvicorn main:app --reload
 
 To access the API, please go to `http://127.0.0.1:8000/`.
 
-Once the API is running, you can also make requests from the command line:
-
-```
-curl -X POST "http://localhost:8000/api/generate-sql" \
--H "Content-Type: application/json" \
--d '{"query": "Show me all galaxies from quaia_v1"}'
-```
-
 
